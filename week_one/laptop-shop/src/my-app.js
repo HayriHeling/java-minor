@@ -108,6 +108,7 @@ class MyApp extends PolymerElement {
   }
 
   static get properties() {
+
     return {
       page: {
         type: String,
@@ -117,6 +118,7 @@ class MyApp extends PolymerElement {
       routeData: Object,
       subroute: Object
     };
+
   }
 
   static get observers() {

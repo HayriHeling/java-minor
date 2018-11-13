@@ -18,22 +18,21 @@ class Home extends PolymerElement {
           color: #fff;
         }
 
-        paper-button.buttonAdd {
-          background: green;
-          color: #fff;
-        }
+        
       </style>
 
-      <template is="dom-repeat" items="[[computers]]">
+      <template is="dom-repeat" items="[[laptops]]">
         <div class="card">
           <div class="circle">[[item.id]]</div>
-          <h1>[[item.name]]</h1>
+          <h1>[[item.name]] | € [[item.price]],-</h1>
           <ul>
             <li><b>Bouwjaar:</b> [[item.buildyear]]</li>
             <li><b>Kleur:</b> [[item.color]]</li>
-            <li><b>Specificaties:</b> [[item.specs]]</li>
+            <li><b>GPU:</b> [[item.cpu]]</li>
+            <li><b>Opslag:</b> [[item.storage]]</li>
+            <li><b>RAM:</b> [[item.ram]]</li>
           </ul>
-          <a href="/configuration">
+          <a href="/configuration/[[item.id]]">
             <paper-button toggles raised class="buttonConfig">Configureren</paper-button>
           </a> 
         </div>
@@ -47,38 +46,35 @@ class Home extends PolymerElement {
   }
   
   _setup() {
-    this.computers = [{
+    this.laptops = [{
       id: 1,
       name: "HP",
       buildyear:  "2007",
       color: "Blauw",
-      specs: [
-        "i5",
-        "500GB SSD",
-        "8GB RAM"
-      ]
+      price: 560,
+      cpu: "i5",
+      storage: "500GB SSD",
+      ram: "4GB"
     },
     {
       id: 2,
       name: "Acer",
       buildyear: "2010",
       color: "Roze",
-      specs: [
-        "i7",
-        "120GB SSD",
-        "8GB RAM"
-      ]
+      price: 780,
+      cpu: "i5",
+      storage: "250GB SSD",
+      ram: "8GB"
     },
     {
       id: 3,
       name: "Asus",
       buildyear: "2014",
       color: "Groen",
-      specs: [
-        "i3",
-        "120GB SSD",
-        "4GB RAM"
-      ]
+      price: 499,
+      cpu: "i3",
+      storage: "124GB SSD",
+      ram: "2GB"
     }];
   }
 }
