@@ -100,6 +100,7 @@ class MyApp extends PolymerElement {
           <iron-pages selected="[[page]]" attr-for-selected="name" role="main">
             <laptop-home name="home"></laptop-home>
             <laptop-configuration name="configuration"></laptop-configuration>
+            <laptop-form name="form"></laptop-form>
             <my-view404 name="view404"></my-view404>
           </iron-pages>
         </app-header-layout>
@@ -134,7 +135,7 @@ class MyApp extends PolymerElement {
      // Show 'home' in that case. And if the page doesn't exist, show 'view404'.
     if (!page) {
       this.page = 'home';
-    } else if (['home', 'configuration'].indexOf(page) !== -1) {
+    } else if (['home', 'configuration', 'form'].indexOf(page) !== -1) {
       this.page = page;
     } else {
       this.page = 'view404';
@@ -157,6 +158,9 @@ class MyApp extends PolymerElement {
         break;
       case 'configuration':
         import('./laptop-configuration.js');
+        break;
+      case 'form':
+        import('./laptop-form.js');
         break;
       case 'view404':
         import('./my-view404.js');

@@ -43,6 +43,7 @@ class Home extends PolymerElement {
   constructor() {
     super();
     this._setup();
+
   }
   
   _setup() {

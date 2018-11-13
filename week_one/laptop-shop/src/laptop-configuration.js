@@ -66,7 +66,7 @@ class LaptopConfiguration extends PolymerElement {
                 </li>
               </target-element>  
               </ul>
-              <a href="/configuration/[[laptop.id]]">
+              <a href="/form">
                 <paper-button toggles raised class="buttonAdd">Bestellen</paper-button>
               </a> 
           </div>
@@ -93,10 +93,10 @@ class LaptopConfiguration extends PolymerElement {
         storage: "500GB SSD",
         ram: "8GB"
       }
-        this._setValueDropdown("color", this.color);
+        /*this._setValueDropdown("color", this.color);
         this._setValueDropdown("cpu", this.cpu);
         this._setValueDropdown("storage", this.storage);
-        this._setValueDropdown("ram", this.ram);
+        this._setValueDropdown("ram", this.ram);*/
       break;
       case '2':
       this.laptop = {
@@ -109,10 +109,10 @@ class LaptopConfiguration extends PolymerElement {
         storage: "500GB SSD",
         ram: "8GB"
       }
-        this._setValueDropdown("color", this.color);
+        /*this._setValueDropdown("color", this.color);
         this._setValueDropdown("cpu", this.cpu);
         this._setValueDropdown("storage", this.storage);
-        this._setValueDropdown("ram", this.ram);
+        this._setValueDropdown("ram", this.ram);*/
       break;
 
       case '3':
@@ -126,10 +126,10 @@ class LaptopConfiguration extends PolymerElement {
         storage: "500GB SSD",
         ram: "8GB"
       }
-        this._setValueDropdown("color", this.color);
+        /*this._setValueDropdown("color", this.color);
         this._setValueDropdown("cpu", this.cpu);
         this._setValueDropdown("storage", this.storage);
-        this._setValueDropdown("ram", this.ram);
+        this._setValueDropdown("ram", this.ram);*/
       break;
 
       default:
@@ -166,10 +166,10 @@ class LaptopConfiguration extends PolymerElement {
     }
   }
 
-  _setValueDropdown(id, value) {
+  /*_setValueDropdown(id, value) {
     let id = document.getElementById(id);
     id.value = value;
-  }
+  }*/
     
   _getLaptopId() {
     let url = window.location.href;
