@@ -3,7 +3,7 @@ import '@polymer/polymer/lib/elements/dom-repeat.js';
 import './shared-styles.js';
 
 /* Extend the base PolymerElement class */
-class Home extends PolymerElement {
+class Overview extends PolymerElement {
   /* Define a template for the new element */
   static get template() {
     return html`
@@ -13,36 +13,26 @@ class Home extends PolymerElement {
           padding: 10px;
         }
 
-        paper-button.buttonConfig {
-          background: #4285f4;
+        paper-button.buttonAbort {
+          background: #FF0800;
           color: #fff;
         }
 
-        .ownBlock {
-          width: 25%;
-          float: left;
-        }
-        
+        paper-button.buttonAccept {
+            background: #5BC235;
+            color: #fff;
+          }
+           
       </style>
-
-      <template is="dom-repeat" items="[[laptops]]">
-      <div class="ownBlock">
         <div class="card">
-          <div class="circle">[[item.id]]</div>
-          <h1>[[item.name]] | € [[item.price]],-</h1>
-          <ul>
-            <li><b>Bouwjaar:</b> [[item.buildyear]]</li>
-            <li><b>Kleur:</b> [[item.color]]</li>
-            <li><b>GPU:</b> [[item.cpu]]</li>
-            <li><b>Opslag:</b> [[item.storage]]</li>
-            <li><b>RAM:</b> [[item.ram]]</li>
-          </ul>
-          <a href="/configuration/[[item.id]]">
-            <paper-button toggles raised class="buttonConfig">Configureren</paper-button>
+          <a href="/home">
+            <paper-button toggles raised class="buttonAbort">Afwijzen</paper-button>
+          </a> 
+          <br>
+          <a href="/#">
+            <paper-button toggles raised class="buttonAccept">Akkoord</paper-button>
           </a> 
         </div>
-      </div>
-      </template>
     `;
   }
 
@@ -86,4 +76,4 @@ class Home extends PolymerElement {
   }
 }
 /* Register the new element with the browser */
-window.customElements.define('laptop-home', Home);
+window.customElements.define('laptop-overview', Overview);
