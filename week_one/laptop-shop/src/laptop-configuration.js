@@ -1,6 +1,6 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import './shared-styles.js';
-import { Polymer } from '@polymer/polymer/polymer-legacy';
+
 
 /* Extend the base PolymerElement class */
 class LaptopConfiguration extends PolymerElement {
@@ -12,22 +12,17 @@ class LaptopConfiguration extends PolymerElement {
           display: block;
           padding: 10px;
         }
-
         paper-button.buttonAdd {
           background: green;
           color: #fff;
         }
-
         h3 {
-
           margin-left: 20px;
         }
-
         .ownBlock {
           width: 50%;
           float: left;
         }
-
         .ownFooter {
           margin-left: 20px;
         }
@@ -69,7 +64,7 @@ class LaptopConfiguration extends PolymerElement {
             <target-element name="[[cpu]]">
               <li>
                 <b>CPU:</b> 
-                <select id="CPU">
+                <select id="cpu">
                   <option value="[[cpu.i3]]">[[cpu.i3]]</option>
                   <option value="[[cpu.i5]]">[[cpu.i5]]</option>
                   <option value="[[cpu.i7]]">[[cpu.i7]]</option>
@@ -99,11 +94,18 @@ class LaptopConfiguration extends PolymerElement {
             </ul>
           </div>
         </div>
-        <div class="ownFooter">
-          <a href="/form">
-            <paper-button toggles raised class="buttonAdd">Bestellen</paper-button>
-          </a> 
+        <div class="ownBlock">
+          <div class="ownFooter">
+            <a href="/form/[[laptop.id]]">
+              <paper-button toggles raised class="buttonAdd">Bestellen</paper-button>
+            </a> 
+          </div>
         </div>
+        <div class="ownBlock">
+        <div class="ownFooter">
+            <paper-button toggles raised class="buttonAdd" on-tap="_changeSettings">Aanpassen</paper-button>
+        </div>
+      </div>
       <target-element>
     `;
   }
@@ -112,9 +114,9 @@ class LaptopConfiguration extends PolymerElement {
     super();
     this._setup();
     this._setupOptions();
-    this._setupLaptop();
   }
   
+  /*Inladen van de componenten en data*/
   _setup() {
     switch (this._getLaptopId()) {
       case '1':
@@ -163,16 +165,21 @@ class LaptopConfiguration extends PolymerElement {
     return html
   }
 
-  _setupLaptop() {
-    if(this._getLaptopId() === "1"){
-
+  /*Veranderen van de settings van de laptop*/
+  _changeSettings() {
+    this.laptop = {
+      id: this.laptop.id,
+      name: this.laptop.name,
+      price: this.laptop.price,
+      buildyear: this.laptop.buildyear,
+      color: this.$.color.value,
+      cpu: this.$.cpu.value,
+      storage: this.$.storage.value,
+      ram: this.$.ram.value
     }
   }
 
-  _change() {
-
-  }
-
+  /*Inladen van de dropdown componenten en data*/
   _setupOptions() {
     this.color = {
       green: "Groen",
@@ -196,6 +203,7 @@ class LaptopConfiguration extends PolymerElement {
     }
   }
 
+  /*Verkrijg het id van de laptop uit de url*/
   _getLaptopId() {
     let url = window.location.href;
     let laptopId = url.substring(url.length, url.length - 1);
@@ -203,5 +211,5 @@ class LaptopConfiguration extends PolymerElement {
     return laptopId;
   }
 }
-/* Register the new element with the browser */
+/* Het element registreren naar de browser */
 window.customElements.define('laptop-configuration', LaptopConfiguration);
