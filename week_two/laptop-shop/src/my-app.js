@@ -107,6 +107,14 @@ class MyApp extends PolymerElement {
           </iron-pages>
         </app-header-layout>
       </app-drawer-layout>
+
+      <iron-ajax
+          auto
+          url="http://127.0.0.1/listUsers"
+          handle-as="json"
+          on-response="_handleResponse"
+          debounce-duration="300">
+      </iron-ajax>
     `;
   }
 
@@ -122,6 +130,10 @@ class MyApp extends PolymerElement {
       subroute: Object
     };
 
+  }
+
+  _handleResponse() {
+    console.log('dsf');
   }
 
   static get observers() {
