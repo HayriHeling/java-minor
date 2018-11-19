@@ -22,7 +22,6 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         background-color: #fff;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
       }
-
       .circle {
         width: 24px;
         height: 24px;
@@ -33,11 +32,20 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         font-size: 10px;
         line-height: 24px;
       }
-
       h1 {
         margin: 16px 0;
         color: #212121;
         font-size: 22px;
+      }
+      h3 {
+        margin-left: 20px;
+      }
+      .ownBlock {
+        width: 50%;
+        float: left;
+      }
+      .ownFooter {
+        margin-left: 20px;
       }
     </style>
   </template>

@@ -1,8 +1,7 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import '@polymer/paper-input/paper-input.js';
 import '@polymer/iron-form/iron-form.js';
+import '@polymer/paper-input/paper-input.js';
 import './shared-styles.js';
-
 
 /* Extend the base PolymerElement class */
 class Form extends PolymerElement{
@@ -28,6 +27,7 @@ class Form extends PolymerElement{
       </style>
       <dom module id="laptop-form">
         <div class="card">
+        <h1>Vul uw persoonlijke gegevens in</h1>
             <form id="form" is="iron-form">
                 <paper-input id="firstname" name="firstname" label="Voornaam" required auto-validate pattern="[a-zA-Z-]*" error-message="Vul je voornaam in"></paper-input>
                 <paper-input id="lastname" label="Achternaam" required auto-validate pattern="[a-zA-Z]*" error-message="Vul je achternaam in"></paper-input>
@@ -62,37 +62,32 @@ class Form extends PolymerElement{
   }
 
   _formIsFilledIn(){
-    let firstname = this.shadowRoot.getElementById('firstname').value;
-    let lastname = this.shadowRoot.getElementById('lastname').value;
-    let adres = this.shadowRoot.getElementById('adres').value;
-    let zipcode = this.shadowRoot.getElementById('zipcode').value;
-    let place = this.shadowRoot.getElementById('place').value;
-    let email = this.shadowRoot.getElementById('email').value;
-    let iban = this.shadowRoot.getElementById('iban').value;
+    let _firstname = this.shadowRoot.getElementById('firstname').value;
+    let _lastname = this.shadowRoot.getElementById('lastname').value;
+    let _adres = this.shadowRoot.getElementById('adres').value;
+    let _zipcode = this.shadowRoot.getElementById('zipcode').value;
+    let _place = this.shadowRoot.getElementById('place').value;
+    let _email = this.shadowRoot.getElementById('email').value;
+    let _iban = this.shadowRoot.getElementById('iban').value;
 
-    if (firstname == "" || lastname == "" || adres == "" || zipcode == "" || place == "" || email == "" || iban == "") {
+    if (_firstname == "" || _lastname == "" || _adres == "" || _zipcode == "" || _place == "" || _email == "" || _iban == "") {
       this._returnGlobalErrorMessage();
     }
     else {
-      this._setPeronalDetails();
+      this.person = {
+        laptopId: this._getLaptopId(),
+        firstname: _firstname,
+        lastname: _lastname,
+        adres: _adres,
+        zipcode: _zipcode,
+        place: _place,
+        email: _email,
+        iban: _iban
+      }
+      
+      localStorage.setItem("person", JSON.stringify(this.person));
       this._submitForm();
     }
-  }
-
-  /* De values van de input fields in de fields van het object zetten */
-  _setPeronalDetails(){
-    this.person = {
-      laptopId: this._getLaptopId(),
-      firstname: this.firstname,
-      lastname: this.lastname,
-      adres: this.adres,
-      zipcode: this.zipcode,
-      place: this.place,
-      email: this.email,
-      iban: this.iban
-    }
-
-    return this.person;
   }
 
   /*Verkrijg de id van de url*/

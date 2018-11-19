@@ -16,16 +16,6 @@ class LaptopConfiguration extends PolymerElement {
           background: green;
           color: #fff;
         }
-        h3 {
-          margin-left: 20px;
-        }
-        .ownBlock {
-          width: 50%;
-          float: left;
-        }
-        .ownFooter {
-          margin-left: 20px;
-        }
       </style>
       
       <!-- First choice -->
@@ -36,11 +26,11 @@ class LaptopConfiguration extends PolymerElement {
             <div class="circle">[[laptop.id]]</div>
               <h1>[[laptop.name]] | € [[laptop.price]],-</h1>
               <ul>
-                <li><b>Bouwjaar:</b> [[laptop.buildyear]]</li>
-                <li><b>Kleur:</b> [[laptop.color]]</li>
-                <li><b>GPU:</b> [[laptop.cpu]]</li>
-                <li><b>Opslag:</b> [[laptop.storage]]</li>
-                <li><b>RAM:</b> [[laptop.ram]]</li>
+              <li><span><b>Bouwjaar: </b></span>[[laptop.buildyear]]</li>
+                <li><b>Kleur: </b><span id="laptopColor">[[laptop.color]]</span></li>
+                <li><b>CPU: </b><span id="laptopCpu">[[laptop.cpu]]</span></li>
+                <li><b>Opslag: </b><span id="laptopStorage">[[laptop.storage]]</span></li>
+                <li><b>RAM: </b><span id="laptopRam">[[laptop.ram]]</span></li>
               </ul>
           </div>
         </div>
@@ -97,7 +87,7 @@ class LaptopConfiguration extends PolymerElement {
         <div class="ownBlock">
           <div class="ownFooter">
             <a href="/form/[[laptop.id]]">
-              <paper-button toggles raised class="buttonAdd">Bestellen</paper-button>
+              <paper-button toggles raised class="buttonAdd" on-tap="_saveSettings">Bestellen</paper-button>
             </a> 
           </div>
         </div>
@@ -177,6 +167,20 @@ class LaptopConfiguration extends PolymerElement {
       storage: this.$.storage.value,
       ram: this.$.ram.value
     }
+  }
+
+  _saveSettings(){
+    this.laptop = {
+      id: this.laptop.id,
+      name: this.laptop.name,
+      price: this.laptop.price,
+      buildyear: this.laptop.buildyear,
+      color: this.shadowRoot.getElementById('laptopColor').innerHTML,
+      cpu: this.shadowRoot.getElementById('laptopCpu').innerHTML,
+      storage: this.shadowRoot.getElementById('laptopStorage').innerHTML,
+      ram: this.shadowRoot.getElementById('laptopRam').innerHTML
+    }
+    localStorage.setItem("laptop", JSON.stringify(this.laptop));
   }
 
   /*Inladen van de dropdown componenten en data*/

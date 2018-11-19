@@ -16,13 +16,7 @@ class Home extends PolymerElement {
         paper-button.buttonConfig {
           background: #4285f4;
           color: #fff;
-        }
-
-        .ownBlock {
-          width: 25%;
-          float: left;
-        }
-        
+        }     
       </style>
 
       <template is="dom-repeat" items="[[laptops]]">

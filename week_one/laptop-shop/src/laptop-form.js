@@ -3,7 +3,6 @@ import '@polymer/paper-input/paper-input.js';
 import '@polymer/iron-form/iron-form.js';
 import './shared-styles.js';
 
-
 /* Extend the base PolymerElement class */
 class Form extends PolymerElement{
   /* Define a template for the new element */
