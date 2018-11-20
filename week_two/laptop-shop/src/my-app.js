@@ -20,7 +20,6 @@ import '@polymer/app-route/app-location.js';
 import '@polymer/app-route/app-route.js';
 import '@polymer/iron-pages/iron-pages.js';
 import '@polymer/iron-selector/iron-selector.js';
-import '@polymer/iron-ajax/iron-ajax.js';
 import '@polymer/paper-button/paper-button.js';
 
 // Gesture events like tap and track generated from touch will not be
@@ -107,14 +106,6 @@ class MyApp extends PolymerElement {
           </iron-pages>
         </app-header-layout>
       </app-drawer-layout>
-
-      <iron-ajax
-          auto
-          url="http://127.0.0.1/listUsers"
-          handle-as="json"
-          on-response="_handleResponse"
-          debounce-duration="300">
-      </iron-ajax>
     `;
   }
 
@@ -132,9 +123,7 @@ class MyApp extends PolymerElement {
 
   }
 
-  _handleResponse() {
-    console.log('dsf');
-  }
+
 
   static get observers() {
     return [

@@ -1,5 +1,6 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/polymer/lib/elements/dom-repeat.js';
+import '@polymer/iron-ajax/iron-ajax.js';
 import './shared-styles.js';
 
 /* Extend the base PolymerElement class */
@@ -37,6 +38,14 @@ class Home extends PolymerElement {
         </div>
       </div>
       </template>
+
+      <iron-ajax
+        auto
+        url="http://127.0.0.1/listLaptops"
+        handle-as="json"
+        on-response="_handleResponse"
+        debounce-duration="300">
+      </iron-ajax>
     `;
   }
 
@@ -44,6 +53,10 @@ class Home extends PolymerElement {
     super();
     this._setup();
 
+  }
+
+  _handleResponse() {
+    console.log('Test');
   }
   
   _setup() {
