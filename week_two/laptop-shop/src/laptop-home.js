@@ -3,6 +3,8 @@ import '@polymer/polymer/lib/elements/dom-repeat.js';
 import '@polymer/iron-ajax/iron-ajax.js';
 import './shared-styles.js';
 
+let _response;
+
 /* Extend the base PolymerElement class */
 class Home extends PolymerElement {
   /* Define a template for the new element */
@@ -51,45 +53,16 @@ class Home extends PolymerElement {
 
   constructor() {
     super();
-    this._setup();
-
   }
 
-  _handleResponse() {
-    console.log('Test');
-  }
-  
-  _setup() {
-    this.laptops = [{
-      id: 1,
-      name: "HP",
-      buildyear:  "2007",
-      color: "Blauw",
-      price: 560,
-      cpu: "i5",
-      storage: "500GB SSD",
-      ram: "4GB"
-    },
-    {
-      id: 2,
-      name: "Acer",
-      buildyear: "2010",
-      color: "Roze",
-      price: 780,
-      cpu: "i5",
-      storage: "250GB SSD",
-      ram: "8GB"
-    },
-    {
-      id: 3,
-      name: "Asus",
-      buildyear: "2014",
-      color: "Groen",
-      price: 499,
-      cpu: "i3",
-      storage: "124GB SSD",
-      ram: "2GB"
-    }];
+  _handleResponse(event, req) {
+    const res = req.response;
+
+    console.log(res.laptops[0].id);
+
+    this.laptops = {
+      id: res.laptops[0].id
+    }
   }
 }
 /* Register the new element with the browser */
