@@ -83,7 +83,8 @@ class MyApp extends PolymerElement {
         <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
           <app-toolbar>Laptop Shop</app-toolbar>
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-            <a name="home" href="[[rootPath]]home">Laptops</a>
+            <a name="dashboard" href="[[rootPath]]dashboard">Dashboard</a>
+            <a name="home" href="[[rootPath]]home">Laptops</a>  
           </iron-selector>
         </app-drawer>
 
@@ -102,7 +103,7 @@ class MyApp extends PolymerElement {
             <laptop-configuration name="configuration"></laptop-configuration>
             <laptop-form name="form"></laptop-form>
             <laptop-overview name="overview"></laptop-overview>
-            <my-view404 name="view404"></my-view404>
+            <laptop-dashboard name="dashboard"></laptop-dashboard>
           </iron-pages>
         </app-header-layout>
       </app-drawer-layout>
@@ -136,10 +137,10 @@ class MyApp extends PolymerElement {
      // Show 'home' in that case. And if the page doesn't exist, show 'view404'.
     if (!page) {
       this.page = 'home';
-    } else if (['home', 'configuration', 'form', 'overview'].indexOf(page) !== -1) {
+    } else if (['home', 'configuration', 'form', 'overview', 'dashboard'].indexOf(page) !== -1) {
       this.page = page;
     } else {
-      this.page = 'view404';
+
     }
 
     // Close a non-persistent drawer when the page & route are changed.
@@ -166,8 +167,8 @@ class MyApp extends PolymerElement {
       case 'overview':
         import('./laptop-overview.js');
         break;
-      case 'view404':
-        import('./my-view404.js');
+      case 'dashboard':
+        import('./laptop-dashboard.js');
         break;
     }
   }

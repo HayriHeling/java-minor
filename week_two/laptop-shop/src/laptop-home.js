@@ -3,8 +3,6 @@ import '@polymer/polymer/lib/elements/dom-repeat.js';
 import '@polymer/iron-ajax/iron-ajax.js';
 import './shared-styles.js';
 
-let _response;
-
 /* Extend the base PolymerElement class */
 class Home extends PolymerElement {
   /* Define a template for the new element */
@@ -22,7 +20,15 @@ class Home extends PolymerElement {
         }     
       </style>
 
-      <template is="dom-repeat" items="[[laptops]]">
+      <iron-ajax
+        auto
+        url="http://127.0.0.1/api/laptops"
+        handle-as="json"
+        last-response="{{response}}"
+        debounce-duration="300">
+      </iron-ajax>
+
+      <template is="dom-repeat" items="{{response.laptops}}">
       <div class="ownBlock">
         <div class="card">
           <div class="circle">[[item.id]]</div>
@@ -30,9 +36,9 @@ class Home extends PolymerElement {
           <ul>
             <li><b>Bouwjaar:</b> [[item.buildyear]]</li>
             <li><b>Kleur:</b> [[item.color]]</li>
-            <li><b>GPU:</b> [[item.cpu]]</li>
-            <li><b>Opslag:</b> [[item.storage]]</li>
-            <li><b>RAM:</b> [[item.ram]]</li>
+            <li><b>CPU:</b> [[item.cpu]]</li>
+            <li><b>Opslag:</b> [[item.storage]] GB SSD</li>
+            <li><b>RAM:</b> [[item.ram]] GB</li>
           </ul>
           <a href="/configuration/[[item.id]]">
             <paper-button toggles raised class="buttonConfig">Configureren</paper-button>
@@ -40,14 +46,6 @@ class Home extends PolymerElement {
         </div>
       </div>
       </template>
-
-      <iron-ajax
-        auto
-        url="http://127.0.0.1/listLaptops"
-        handle-as="json"
-        on-response="_handleResponse"
-        debounce-duration="300">
-      </iron-ajax>
     `;
   }
 
@@ -58,11 +56,14 @@ class Home extends PolymerElement {
   _handleResponse(event, req) {
     const res = req.response;
 
-    console.log(res.laptops[0].id);
-
-    this.laptops = {
-      id: res.laptops[0].id
-    }
+    /*Door alle laptops heen loopen*/
+    (res.laptops).forEach(laptop => {
+      this.laptops = {
+        id: laptop.id,
+        name: laptop.name
+      }
+      console.log(laptop.id + laptop.name);
+    });
   }
 }
 /* Register the new element with the browser */
