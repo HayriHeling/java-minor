@@ -47,9 +47,11 @@ class LaptopDashboard extends PolymerElement {
 
         <iron-ajax
             auto
+            id="api"
             url="http://127.0.0.1/api/laptops"
             handle-as="json"
             method="{{method}}"
+            body="{{body}}"
             on-response="_response"
             debounce-duration="300">
         </iron-ajax>
@@ -93,8 +95,7 @@ class LaptopDashboard extends PolymerElement {
         super();
     }
 
-    _response(event, request) {
-        this.method = "GET";   
+    _response(event, request) {  
         let _response = request.response;
         
         //Alle laptops
@@ -102,8 +103,6 @@ class LaptopDashboard extends PolymerElement {
     }
 
     _addLaptop() {
-        this.method = "POST";
-        
         this.laptop = {
             id: (this.laptopsCount + 1),
             name: this.$.laptopName.value,
@@ -113,9 +112,10 @@ class LaptopDashboard extends PolymerElement {
             cpu: this.$.laptopCpu.value,
             storage: this.$.laptopStorage.value,
             ram: this.$.laptopRam.value
-        }
-        
-        console.log(JSON.stringify(this.laptop));
+        } 
+
+        this.method = "POST";
+        this.body = JSON.stringify(this.laptop);
     }
 }
 
