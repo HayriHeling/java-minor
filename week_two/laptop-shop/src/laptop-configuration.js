@@ -1,4 +1,5 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import '@polymer/iron-ajax/iron-ajax.js';
 import './shared-styles.js';
 
 
@@ -17,6 +18,15 @@ class LaptopConfiguration extends PolymerElement {
           color: #fff;
         }
       </style>
+
+      <iron-ajax
+        auto
+        method="{{method}}"
+        url="{{url}}"
+        handle-as="json"
+        on-response="_handleResponse"
+        debounce-duration="300">
+      </iron-ajax>
       
       <!-- First choice -->
       <target-element name="[[laptop]]">
@@ -102,59 +112,10 @@ class LaptopConfiguration extends PolymerElement {
 
   constructor() {
     super();
-    this._setup();
+    this._setMethodAndRequest();
     this._setupOptions();
   }
   
-  /*Inladen van de componenten en data*/
-  _setup() {
-    switch (this._getLaptopId()) {
-      case '1':
-      this.laptop = {
-        id: 1,
-        name: "HP",
-        buildyear:  "2007",
-        color: "Blauw",
-        price: 560,
-        cpu: "i5",
-        storage: "500GB SSD",
-        ram: "8GB"
-      }
-      break;
-
-      case '2':
-      this.laptop = {
-        id: 2,
-        name: "Acer",
-        buildyear: "2010",
-        color: "Roze",
-        price: 780,
-        cpu: "i5",
-        storage: "500GB SSD",
-        ram: "8GB"
-      }
-      break;
-
-      case '3':
-      this.laptop = {
-        id: 3,
-        name: "Asus",
-        buildyear: "2014",
-        color: "Groen",
-        price: 499,
-        cpu: "i5",
-        storage: "500GB SSD",
-        ram: "8GB"
-      }
-      break;
-
-      default:
-      break;
-    }
-
-    return html
-  }
-
   /*Veranderen van de settings van de laptop*/
   _changeSettings() {
     this.laptop = {
@@ -213,6 +174,27 @@ class LaptopConfiguration extends PolymerElement {
     let laptopId = url.substring(url.length, url.length - 1);
 
     return laptopId;
+  }
+
+  _setMethodAndRequest() {
+    this.method = "GET";
+    this.url = "http://127.0.0.1/api/laptops/" + this._getLaptopId();
+  }
+
+  _handleResponse(event, req) {
+    const laptop = req.response;
+    
+    //Object met de data van de API vullen
+    this.laptop = {
+      id: laptop.id,
+      name: laptop.name,
+      price: laptop.price,
+      buildyear: laptop.buildyear,
+      color: laptop.color,
+      cpu: laptop.cpu,
+      storage: laptop.storage,
+      ram: laptop.ram
+    }
   }
 }
 /* Het element registreren naar de browser */

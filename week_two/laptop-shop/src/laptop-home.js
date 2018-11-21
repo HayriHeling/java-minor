@@ -22,7 +22,8 @@ class Home extends PolymerElement {
 
       <iron-ajax
         auto
-        url="http://127.0.0.1/api/laptops"
+        method="{{method}}"
+        url="{{url}}"
         handle-as="json"
         last-response="{{response}}"
         debounce-duration="300">
@@ -40,9 +41,9 @@ class Home extends PolymerElement {
             <li><b>Opslag:</b> [[item.storage]] GB SSD</li>
             <li><b>RAM:</b> [[item.ram]] GB</li>
           </ul>
-          <a href="/configuration/[[item.id]]">
-            <paper-button toggles raised class="buttonConfig">Configureren</paper-button>
-          </a> 
+            <a href="/configuration/[[item.id]]">
+              <paper-button toggles raised class="buttonConfig">Configureren</paper-button>
+            </a>
         </div>
       </div>
       </template>
@@ -51,20 +52,9 @@ class Home extends PolymerElement {
 
   constructor() {
     super();
+    this.url ="http://127.0.0.1/api/laptops";
   }
 
-  _handleResponse(event, req) {
-    const res = req.response;
-
-    /*Door alle laptops heen loopen*/
-    (res.laptops).forEach(laptop => {
-      this.laptops = {
-        id: laptop.id,
-        name: laptop.name
-      }
-      console.log(laptop.id + laptop.name);
-    });
-  }
 }
 /* Register the new element with the browser */
 window.customElements.define('laptop-home', Home);

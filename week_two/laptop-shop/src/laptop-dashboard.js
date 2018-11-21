@@ -116,6 +116,7 @@ class LaptopDashboard extends PolymerElement {
 
         this.method = "POST";
         this.body = JSON.stringify(this.laptop);
+        console.log(this.body);
     }
 }
 
