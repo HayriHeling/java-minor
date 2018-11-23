@@ -12,36 +12,42 @@ class LaptopDashboard extends PolymerElement {
                 display: block;
                 padding: 10px;
             }
-
-            .section .card {
-                width: 230px;
-                float: left;
-                text-align: center;
-            }
-
+            
             .section {
-                width: 100%;
-                height: 300 px;
-                float: left;
-            }
-
-            .circle {
-                background-color: #4D4D4D;
-                width: 100px;
-                height: 100px;
-                font-size: 56px;
-                line-height: 105px;
-                margin-left: 65px;
-            }
-
-            .main {
-                width: 100%;
+                width: 50%;
                 height: 300px;
                 float: left;
             }
 
+            .cardSection {
+                width: 37%;
+                float: left;
+            }
+
+            .cardTable {
+                margin-top: 100px;
+            }
+
+            .circle {
+                margin-left: 90px;
+                height: 50px;
+                width: 50px;
+                line-height: 50px;
+                font-size: 32px;
+            }
+
+            .buttonSend {
+                margin-left: 20px;
+            }
+
+            .buttonDelete {
+                color: red;
+            }
+
             h3 {
                 color: #4D4D4D;
+                text-align: center;
+                margin-left: -5px;
             }
         </style>
 
@@ -57,24 +63,24 @@ class LaptopDashboard extends PolymerElement {
         </iron-ajax>
         
         <div class="section">
-            <div class="card">
+            <div class="card cardSection">
                 <h3>Aantal laptops</h3>
                 <div class="circle">{{laptopsCount}}</div>
             </div>
-            <div class="card">
+            <div class="card cardSection">
                 <h3>Aantal klanten</h3>
                 <div class="circle"></div>
             </div>
-            <div class="card">
+            <div class="card cardSection">
                 <h3>Bestellingen</h3>
                 <div class="circle"></div>
             </div>
-            <div class="card">
+            <div class="card cardSection">
                 <h3>Winst</h3>
                 <div class="circle"></div>
             </div>
         </div>
-        <div class="main">
+        <div class="section">
             <div class="card">
                 <form id="form" is="iron-form">
                     <paper-input id="laptopName" name="laptopName" label="Naam laptop"></paper-input>
@@ -84,10 +90,23 @@ class LaptopDashboard extends PolymerElement {
                     <paper-input id="laptopCpu" name="laptopCpu" label="Cpu laptop"></paper-input>
                     <paper-input id="laptopStorage" name="laptopStorage" label="Opslag laptop"></paper-input>
                     <paper-input id="laptopRam" name="laptopRam" label="Ram laptop"></paper-input>
-                    <paper-button id="button" class="buttonSend" on-tap="_addLaptop">Versturen</paper-button>
                 </form>
             </div>
+            <paper-button id="button" class="buttonSend" on-tap="_addLaptop">Toevoegen</paper-button>
+        </div>  
+        <div class="section">
+        <div class="card cardTable">
+            <table>       
+                <template is="dom-repeat" items="{{response.laptops}}">       
+                    <tr>
+                        <td id="[[item.id]]">[[item.name]]</td>
+                        <td><paper-button class="buttonDelete" on-tap="_deleteLaptop">X</paper-button></td>
+                    </tr>  
+                </template>    
+            </table>
+            </div>
         </div>
+        </template>
         `;
     }
 
@@ -96,10 +115,14 @@ class LaptopDashboard extends PolymerElement {
     }
 
     _response(event, request) {  
-        let _response = request.response;
+        //Gebruiken voor de dom-repeat template
+        this.response = request.response;
+
+        //Gebruiken voor andere responses
+        let response = request.response;
         
         //Alle laptops
-        this.laptopsCount = _response.laptops.length;
+        this.laptopsCount = response.laptops.length;
     }
 
     _addLaptop() {
@@ -117,6 +140,11 @@ class LaptopDashboard extends PolymerElement {
         this.method = "POST";
         this.body = JSON.stringify(this.laptop);
         console.log(this.body);
+        setTimeout("location.href = '/dashboard'", 1000);
+    }
+
+    _deleteLaptop() {
+        
     }
 }
 

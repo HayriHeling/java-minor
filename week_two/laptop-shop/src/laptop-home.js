@@ -54,7 +54,6 @@ class Home extends PolymerElement {
     super();
     this.url ="http://127.0.0.1/api/laptops";
   }
-
 }
 /* Register the new element with the browser */
 window.customElements.define('laptop-home', Home);
