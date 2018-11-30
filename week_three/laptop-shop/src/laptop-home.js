@@ -52,7 +52,7 @@ class Home extends PolymerElement {
 
   constructor() {
     super();
-    this.url ="http://127.0.0.1/api/laptops";
+    this.url ="http://127.0.0.1:8080/api/laptops";
   }
 }
 /* Register the new element with the browser */
