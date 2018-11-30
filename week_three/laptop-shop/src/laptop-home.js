@@ -22,18 +22,17 @@ class Home extends PolymerElement {
 
       <iron-ajax
         auto
-        method="{{method}}"
-        url="{{url}}"
+        url="http://127.0.0.1:8080/api/laptops"
         handle-as="json"
         last-response="{{response}}"
         debounce-duration="300">
       </iron-ajax>
 
-      <template is="dom-repeat" items="{{response.laptops}}">
+      <template is="dom-repeat" items="{{response}}">
       <div class="ownBlock">
         <div class="card">
           <div class="circle">[[item.id]]</div>
-          <h1>[[item.name]] | € [[item.price]],-</h1>
+          <h1>[[item.brand]] | € [[item.price]],-</h1>
           <ul>
             <li><b>Bouwjaar:</b> [[item.buildyear]]</li>
             <li><b>Kleur:</b> [[item.color]]</li>
@@ -52,7 +51,6 @@ class Home extends PolymerElement {
 
   constructor() {
     super();
-    this.url ="http://127.0.0.1:8080/api/laptops";
   }
 }
 /* Register the new element with the browser */

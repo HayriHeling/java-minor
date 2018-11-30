@@ -4,7 +4,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 public class LaptopshopInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     protected String[] getServletMappings() {
-        return new String[]{"/api/laptops"};
+        return new String[]{"/"};
     }
 
     protected Class<?>[] getRootConfigClasses() {

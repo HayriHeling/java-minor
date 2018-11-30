@@ -20,7 +20,6 @@ class LaptopConfiguration extends PolymerElement {
 
       <iron-ajax
         auto
-        method="{{method}}"
         url="{{url}}"
         handle-as="json"
         on-response="_handleResponse"
@@ -177,16 +176,17 @@ class LaptopConfiguration extends PolymerElement {
 
   _setMethodAndRequest() {
     this.method = "GET";
-    this.url = "http://127.0.0.1/api/laptops/" + this._getLaptopId();
+    this.url = "http://127.0.0.1:8080/api/laptops/" + this._getLaptopId();
   }
 
   _handleResponse(event, req) {
     const laptop = req.response;
-    
+    console.log(laptop);  
+  
     //Object met de data van de API vullen
     this.laptop = {
       id: laptop.id,
-      name: laptop.name,
+      name: laptop.brand,
       price: laptop.price,
       buildyear: laptop.buildyear,
       color: laptop.color,

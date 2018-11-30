@@ -15,7 +15,7 @@ public class Laptop {
     private String brand;
     private String color;
 
-    public Laptop(int id, int price, String brand, String color, int storage, int ram, String cpu) {
+    public Laptop(int id, int price, String brand, int buildyear, String color, int storage, int ram, String cpu) {
         this.id = id;
         this.price = price;
         this.brand = brand;

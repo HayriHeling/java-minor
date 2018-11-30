@@ -1,26 +1,28 @@
 package resource;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class LaptopController {
-    @RequestMapping(path = "/api/laptops", method = RequestMethod.GET)
-    public Laptop returnLaptops()
+    @RequestMapping(value = "/api/laptops", method = RequestMethod.GET)
+    public ArrayList<Laptop> returnLaptops()
     {
         ArrayList<Laptop> laptops = new ArrayList<>();
 
-        laptops.add(new Laptop(1, 100, "HP Pavillion", "Grijs", 200, 8, "i5"));
-        laptops.add(new Laptop(2, 200, "Asus", "Grijs", 200, 8, "i5"));
-        laptops.add(new Laptop(3, 300, "Acer", "Grijs", 200, 8, "i5"));
+        laptops.add(new Laptop(1, 450, "HP Pavillion", 2010,"Grijs", 100, 4, "i3"));
+        laptops.add(new Laptop(2, 700, "Asus", 2014,"Zwart", 220, 8, "i5"));
+        laptops.add(new Laptop(3, 950, "Acer", 2016,"Wit", 500, 8, "i7"));
 
-        for(Laptop laptop: laptops){
-            return laptop;
-        }
+        return laptops;
+    }
 
-        return null;
+    @RequestMapping(value = "/api/laptops/{id}", method = RequestMethod.GET)
+    public Laptop returnLaptop(@PathVariable("id") int id){
+        ArrayList<Laptop> laptops = returnLaptops();
+
+        return laptops.get(id - 1);
     }
 }
