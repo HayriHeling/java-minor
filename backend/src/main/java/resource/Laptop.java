@@ -9,6 +9,7 @@ import lombok.Data;
 public class Laptop {
     private int id;
     private int price;
+    private int buildyear;
     private int storage;
     private int ram;
     private String cpu;
@@ -19,6 +20,7 @@ public class Laptop {
         this.id = id;
         this.price = price;
         this.brand = brand;
+        this.buildyear = buildyear;
         this.color = color;
         this.storage = storage;
         this.ram = ram;

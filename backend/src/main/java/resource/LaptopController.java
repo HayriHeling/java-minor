@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST })
 @RestController
 public class LaptopController {
     @RequestMapping(value = "/api/laptops", method = RequestMethod.GET)
@@ -17,6 +17,12 @@ public class LaptopController {
         laptops.add(new Laptop(3, 950, "Acer", 2016,"Wit", 500, 8, "i7"));
 
         return laptops;
+    }
+
+    @RequestMapping(value = "/api/laptops/options", method = RequestMethod.GET)
+    public LaptopOptions returnLaptopOptions()
+    {
+        return new LaptopOptions();
     }
 
     @RequestMapping(value = "/api/laptops/{id}", method = RequestMethod.GET)
