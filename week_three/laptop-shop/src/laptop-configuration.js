@@ -1,5 +1,8 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-ajax/iron-ajax.js';
+import '@polymer/paper-dropdown-menu/paper-dropdown-menu.js';
+import '@polymer/paper-item/paper-item.js';
+import '@polymer/paper-listbox/paper-listbox.js';
 import './shared-styles.js';
 
 /* Extend the base PolymerElement class */
@@ -16,13 +19,25 @@ class LaptopConfiguration extends PolymerElement {
           background: green;
           color: #fff;
         }
+        li {
+          list-style: none;
+        }
       </style>
+      
+      <!-- Aanroepen van de API urls -->
+      <iron-ajax
+        auto
+        url="http://127.0.0.1:8080/api/laptops/[[id]]"
+        handle-as="json"
+        on-response="_responseLaptop"
+        debounce-duration="300">
+      </iron-ajax>
 
       <iron-ajax
         auto
-        url="{{url}}"
+        url="http://127.0.0.1:8080/api/laptops/options"
         handle-as="json"
-        on-response="_handleResponse"
+        on-response="_responseLaptopOptions"
         debounce-duration="300">
       </iron-ajax>
       
@@ -49,46 +64,42 @@ class LaptopConfiguration extends PolymerElement {
             <h1>[[laptop.name]] | € [[laptop.price]],-</h1>
             <ul>
             <li><b>Bouwjaar:</b> [[laptop.buildyear]]</option></select></li>
-            <target-element name="[[color]]"> 
               <li>
-                <b>Kleur:</b>
-                <select id="color">
-                  <option value="[[color.green]]">[[color.green]]</option>
-                  <option value="[[color.blue]]">[[color.blue]]</option>
-                  <option value="[[color.red]]">[[color.red]]</option>
-                </select>
-              </li>
-            </target-element>
-            <target-element name="[[cpu]]">
+                <paper-dropdown-menu id="color" label="Kleur">
+                  <paper-listbox slot="dropdown-content" selected="0">
+                    <template is="dom-repeat" items="{{color}}">
+                      <paper-item>[[item]]</paper-item>
+                    </template>
+                  </paper-listbox>
+                </paper-dropdown-menu>
+              </li>    
               <li>
-                <b>CPU:</b> 
-                <select id="cpu">
-                  <option value="[[cpu.i3]]">[[cpu.i3]]</option>
-                  <option value="[[cpu.i5]]">[[cpu.i5]]</option>
-                  <option value="[[cpu.i7]]">[[cpu.i7]]</option>
-                </select>
+                <paper-dropdown-menu label="Cpu">
+                  <paper-listbox slot="dropdown-content" selected="0">
+                    <template is="dom-repeat" items="{{cpu}}">
+                      <paper-item>[[item]]</paper-item>
+                    </template>
+                  </paper-listbox>
+                </paper-dropdown-menu>
               </li>
-            </target-element>
-            <target-element name="[[storage]]">
               <li> 
-                <b>Opslag:</b>
-                <select id="storage">
-                  <option value="[[storage.gb124]]">[[storage.gb124]]</option>
-                  <option value="[[storage.gb250]]">[[storage.gb250]]</option>
-                  <option value="[[storage.gb500]]">[[storage.gb500]]</option>
-                </select>
-              </li>
-            </target-element>
-            <target-element name="[[ram]]">
+                <paper-dropdown-menu label="Opslag">
+                  <paper-listbox slot="dropdown-content" selected="0">
+                    <template is="dom-repeat" items="{{storage}}">
+                      <paper-item>[[item]]</paper-item>
+                    </template>
+                  </paper-listbox>
+                </paper-dropdown-menu>
+              </li> 
               <li>
-                <b>RAM:</b>
-                <select id="ram">
-                  <option value="[[ram.gb2]]">[[ram.gb2]]</option>
-                  <option value="[[ram.gb4]]">[[ram.gb4]]</option>
-                  <option value="[[ram.gb8]]">[[ram.gb8]]</option>
-                </select>
+                <paper-dropdown-menu label="Ram">
+                  <paper-listbox slot="dropdown-content" selected="0">
+                    <template is="dom-repeat" items="{{ram}}">
+                      <paper-item>[[item]]</paper-item>
+                    </template>
+                  </paper-listbox>
+                </paper-dropdown-menu>
               </li>
-            </target-element>  
             </ul>
           </div>
         </div>
@@ -110,8 +121,8 @@ class LaptopConfiguration extends PolymerElement {
 
   constructor() {
     super();
-    this._setMethodAndRequest();
-    this._setupOptions();
+    this.id = this._getLaptopId();
+    //this._setupOptions();
   }
   
   /*Veranderen van de settings van de laptop*/
@@ -174,12 +185,7 @@ class LaptopConfiguration extends PolymerElement {
     return laptopId;
   }
 
-  _setMethodAndRequest() {
-    this.method = "GET";
-    this.url = "http://127.0.0.1:8080/api/laptops/" + this._getLaptopId();
-  }
-
-  _handleResponse(event, req) {
+  _responseLaptop(event, req) {
     const laptop = req.response;
     console.log(laptop);  
   
@@ -194,6 +200,16 @@ class LaptopConfiguration extends PolymerElement {
       storage: laptop.storage,
       ram: laptop.ram
     }
+  }
+
+  _responseLaptopOptions(event, req) {
+    const laptopOptions = req.response;
+    console.log(laptopOptions);  
+
+    this.color = laptopOptions.color;
+    this.cpu = laptopOptions.cpu;
+    this.storage = laptopOptions.storage;
+    this.ram = laptopOptions.ram;
   }
 }
 /* Het element registreren naar de browser */

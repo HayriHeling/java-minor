@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e06ca4bf-0eeb-4861-be8f-ad56cba397ca" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/resource/Laptop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resource/Laptop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/resource/LaptopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resource/LaptopController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week_three/laptop-shop/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../week_three/laptop-shop/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../week_three/laptop-shop/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../week_three/laptop-shop/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../week_three/laptop-shop/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../week_three/laptop-shop/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../week_three/laptop-shop/src/laptop-configuration.js" beforeDir="false" afterPath="$PROJECT_DIR$/../week_three/laptop-shop/src/laptop-configuration.js" afterDir="false" />
@@ -257,16 +256,15 @@
       <workItem from="1543418781808" duration="3084000" />
       <workItem from="1543572736549" duration="9747000" />
       <workItem from="1543583534151" duration="3176000" />
-      <workItem from="1543760425403" duration="2593000" />
+      <workItem from="1543760425403" duration="3325000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40088000" />
+    <option name="totallyTimeSpent" value="40820000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15138593" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -278,7 +276,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33044422" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.33044422" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -287,7 +285,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3286119" />
       <window_info anchor="bottom" id="Spring" order="9" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32394367" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32394367" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3286119" />
       <window_info anchor="bottom" id="Java Enterprise" order="14" weight="0.3286119" />

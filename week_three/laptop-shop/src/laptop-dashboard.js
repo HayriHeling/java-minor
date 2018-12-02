@@ -54,7 +54,7 @@ class LaptopDashboard extends PolymerElement {
         <iron-ajax
             auto
             id="api"
-            url="http://127.0.0.1/api/laptops"
+            url="http://127.0.0.1:8080/api/laptops"
             handle-as="json"
             method="{{method}}"
             body="{{body}}"
@@ -122,7 +122,7 @@ class LaptopDashboard extends PolymerElement {
         let response = request.response;
         
         //Alle laptops
-        this.laptopsCount = response.laptops.length;
+        this.laptopsCount = response.length;
     }
 
     _addLaptop() {
